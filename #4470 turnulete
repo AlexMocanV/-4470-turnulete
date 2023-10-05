@@ -1,0 +1,65 @@
+#include <iostream>
+
+using namespace std;
+
+int long long x[100001],y[100001];
+
+int main()
+{
+    int long long  n,m,i,j,st=1,mid,dr;
+    cin>>n;
+    for(i=1;i<=n;i++)
+    {
+        cin>>x[i];
+        
+    }
+    cin>>m;
+    for(i=1;i<=m;i++)
+    {
+        cin>>y[i];
+        st=1;
+        dr=n;
+        bool ok=0;
+   
+        while(st<=dr)
+        {
+            mid=(st+dr)/2;
+              if(x[mid]==y[i])
+              {
+                st=mid;
+                dr=mid;
+                int copiem=mid;
+                while(x[mid]==x[mid-1])
+                {
+                    mid--;
+                    st=mid;
+                }
+                mid=copiem;
+                while(x[mid]==x[mid+1])
+                {
+                    mid++;
+                    dr=mid;
+                }
+                mid=copiem;
+                cout<<(dr-st+1)*y[i]<<" ";
+                ok=1;
+                break;
+              } 
+              
+               if(y[i]>x[mid])
+               {
+                   st=mid+1;
+               }
+               if(y[i]<x[mid])
+               {
+                   dr=mid-1;
+               }
+            
+        }if(ok==0)
+        {
+            cout<<0<<" ";
+        }
+    
+    }
+    return 0;
+}
